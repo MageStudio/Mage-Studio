@@ -1,10 +1,12 @@
 import React from 'react';
-import { Icon, Select, Switch } from 'antd';
+import { Select, Switch } from 'antd';
+
+import { CodeOutlined } from '@ant-design/icons';
 
 class Script extends React.Component {
 
     componentDidMount() {
-        const { onScriptsMount } = this.props;
+        const { onScriptsMount = f => f } = this.props;
 
         onScriptsMount();
     }
@@ -30,7 +32,7 @@ class Script extends React.Component {
             <div>
                 <div className='scene-property'>
                     <div className='label'>
-                        <Icon type='code' theme='outlined' height='8px' width='8px' className='label-icon'/>
+                        <CodeOutlined height='8px' width='8px' className='label-icon'/>
                         <span className='label-text'>SCRIPT</span>
                     </div>
                     <div className='enabled-toggle'>

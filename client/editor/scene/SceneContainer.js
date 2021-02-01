@@ -5,11 +5,13 @@ import {
 
 import classnames from 'classnames';
 
-import {
-    meshChanged,
-    meshAttached,
-    meshDetached
-} from '../../actions/currentMesh';
+// import {
+//     meshChanged,
+//     meshAttached,
+//     meshDetached
+// } from '../../actions/currentMesh';
+
+import { elementAttached, toggleInspectorVisibility } from '../../actions/inspector';
 
 import {
     saveScene,
@@ -19,10 +21,10 @@ import {
 } from '../../actions/scene';
 
 import Scene from './Scene';
-import Player from './Player';
+// import Player from './Player';
 
 import style from './scene.module.scss';
-import { showModelUploadModal } from '../../actions/models';
+// import { showModelUploadModal } from '../../actions/models';
 
 export class SceneContainer extends React.Component {
 
@@ -44,9 +46,9 @@ export class SceneContainer extends React.Component {
             store,
             config,
             loadScene,
-            onMeshChanged,
-            onMeshAttached,
-            onMeshDetached,
+            onElementChanged,
+            onElementAttached,
+            onElementDetached,
             onSceneExported,
             startProject,
             showModelModal,
@@ -54,7 +56,7 @@ export class SceneContainer extends React.Component {
         } = this.props;
 
         const { fullscreen } = this.state;
-        const { projectPlayerVisible, projectUrl } = scene;
+        // const { projectPlayerVisible, projectUrl } = scene;
 
         const className = classnames(style['scene-container'], {
             [style.fullscreen]: fullscreen
@@ -62,17 +64,17 @@ export class SceneContainer extends React.Component {
 
         return (
             <div className={className}>
-                <Player
+                {/* <Player
                     url={projectUrl}
-                    visible={projectPlayerVisible} />
+                    visible={projectPlayerVisible} /> */}
                 <Scene
                     fullscreen={fullscreen}
                     config={config}
                     store={store}
                     onSceneLoad={loadScene}
-                    onMeshChanged={onMeshChanged}
-                    onMeshAttached={onMeshAttached}
-                    onMeshDetached={onMeshDetached}
+                    onElementChanged={onElementChanged}
+                    onElementAttached={onElementAttached}
+                    onElementDetached={onElementDetached}
                     onSceneExported={onSceneExported} />
             </div>
         );
@@ -80,23 +82,21 @@ export class SceneContainer extends React.Component {
 }
 
 const mapStateToProps = ({ config, scene }) => ({
-    config,
-    scene
+    // config,
+    // scene
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    startProject: project => dispatch(startProject(project)),
-    showModelModal: () => dispatch(showModelUploadModal()),
-    onMeshChanged: ({name, position, rotation, scale}) => {
-        return dispatch(meshChanged(name, position, rotation, scale))
-    },
-    onMeshAttached: ({name, position, rotation, scale}) => {
-        return dispatch(meshAttached(name, position, rotation, scale))
-    },
-    onMeshDetached: () => dispatch(meshDetached()),
-    onSceneExported: (name) => ({ data }) => dispatch(saveScene(name, data)),
-    loadScene: (name) => dispatch(loadScene(name)),
-    stopProject: (project) => dispatch(stopProject(project))
+    // startProject: project => dispatch(startProject(project)),
+    // showModelModal: () => dispatch(showModelUploadModal()),
+    // onElementChanged: ({name, position, rotation, scale}) => {
+    //     return dispatch(meshChanged(name, position, rotation, scale))
+    // },
+    onElementAttached: () => dispatch(elementAttached()),
+    onElementDetached: () => dispatch(toggleInspectorVisibility(false)),
+    // onSceneExported: (name) => ({ data }) => dispatch(saveScene(name, data)),
+    // loadScene: (name) => dispatch(loadScene(name)),
+    // stopProject: (project) => dispatch(stopProject(project))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SceneContainer);

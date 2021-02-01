@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rotation should render fine 1`] = `
+<div
+  className="inspector-property"
+>
+  <label
+    className="inspector-property-label"
+  >
+    Rotation
+  </label>
+  <div
+    className="inspector-property-value inspector-property-input-group"
+  >
+    <div
+      className="inspector-property-input small"
+    >
+      <span
+        className="inspector-property-input-label"
+      >
+        x:
+      </span>
+      <ForwardRef
+        max={999999999}
+        min={-999999999}
+        onChange="x"
+        placeholder="0"
+        step={0.1}
+      />
+    </div>
+    <div
+      className="inspector-property-input small"
+    >
+      <span
+        className="inspector-property-input-label"
+      >
+        y:
+      </span>
+      <ForwardRef
+        max={999999999}
+        min={-999999999}
+        onChange="y"
+        placeholder="0"
+        step={0.1}
+      />
+    </div>
+    <div
+      className="inspector-property-input small"
+    >
+      <span
+        className="inspector-property-input-label"
+      >
+        z:
+      </span>
+      <ForwardRef
+        max={999999999}
+        min={-999999999}
+        onChange="z"
+        placeholder="0"
+        step={0.1}
+      />
+    </div>
+  </div>
+</div>
+`;

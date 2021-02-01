@@ -1,152 +1,30 @@
 @import '../../shared/constants.scss';
 @import '../../shared/theme.scss';
-.sidebar {
-    height: 100%;
-    min-width: 200px;
-    background-color: $background;
-    .box {
-        display: flex;
-        flex-direction: column;
-        min-height: 200px;
-        &.fixed-height {
-            max-height: 350px;
-        }
-        & .content {
-            //padding: $base-unit;
-            flex: 1 1 auto;
-            overflow: auto;
-            //min-height: 300px;
-        }
-        &:first-child {
-            border-bottom: 1px solid $grey;
-        }
-    }
-    // .title {
-    //     background: $background-lighter;
-    //     padding: $base-unit;
-    //     max-height: $base-unit * 5;
-    //     text-transform: uppercase;
-    //     font-weight: 700;
-    //     font-size: 0.65rem;
-    //     margin-bottom: $base-unit / 2;
-    //     & .icon {
-    //         color: $logo;
-    //     }
-    //     & .assets-action {
-    //         float: right;
-    //         margin-top: $base-unit / 4;
-    //         margin-right: $base-unit;
-    //     }
-    //     & span {
-    //         margin-left: $base-unit;
-    //     }
-    // }
-    .scene-property {
-        width: 100%;
-        line-height: $base-unit * 2.75;
-        display: flex;
-        padding: $base-unit/4 $base-unit/4 $base-unit/4 $base-unit;
-        background-color: $background;
-        flex-direction: row;
-        justify-content: space-between;
-        .label {
-            .label-text {
-                font-weight: 700;
-                font-size: 0.55rem;
-                margin-right: $base-unit;
-                flex: 1 1 auto;
-            }
-            .label-icon {
-                margin-right: $base-unit;
-            }
-        }
-    }
-    .scene-setting {
-        padding: $base-unit;
-        .setting-input-group {
-            float: right;
-            width: $base-unit * 20;
-            display: flex;
-            flex-direction: row;
-            & .small {
-                flex: 1 1 auto;
-                margin-right: $base-unit / 2;
-                &.last {
-                    margin-right: 0;
-                }
-            }
-        }
-        .setting-static-value {
-            display: inline-block;
-            float: right;
-            font-family: 'Roboto Mono', sans-serif;
-            font-size: .55rem;
-            font-weight: 700;
-            width: $base-unit * 20;
-        }
-        // .setting-input {
-        //     /* align-self: center; */
-        //     display: inline-block;
-        //     width: 100%;
-        //     border: 1px solid $background-darker;
-        //     //border-radius: 6px;
-        //     &.right {
-        //         float: right;
-        //         width: $base-unit * 20;
-        //     }
-        //     & > *,
-        //     & input {
-        //         height: $base-unit * 3;
-        //         font-family: 'Roboto Mono', sans-serif;
-        //         font-size: .55rem;
-        //         font-weight: 700;
-        //         background: $background;
-        //         border: none;
-        //         color: white;
-        //         border-radius: 0px;
-        //         width: 100% !important;
-        //     }
-        //     &.disabled > * {
-        //         color: $grey;
-        //         opacity: .2;
-        //     }
-        // }
-        .setting-label {
-            line-height: $base-unit * 3;
-        }
-        .setting-row {
-            float: left;
-            display: inline-block;
-            width: 100%;
-            margin-bottom: $base-unit / 2;
-            &:last-child {
-                margin-bottom: $base-unit;
-            }
-        }
-    }
+
+.inspector-container {
+    position: absolute;
+    // width: 320px;
+    bottom: 64px;
+    right: 16px;
+    // height: 640px;
+    height: auto;
+    width: auto;
+    border-radius: $base-unit / 2;
+    background: $background;
 }
 
-.ant-select-dropdown {
-    background-color: $background !important;
-    border: 1px solid $background-darker;
-    border-radius: 0px !important;
-    & .ant-select-dropdown-menu {
-        border-radius: 0px;
-    }
-    & .ant-select-dropdown-menu-item {
-        color: $white !important;
-        font-family: 'Roboto Mono', sans-serif;
-        font-size: .55rem;
-        &.ant-select-dropdown-menu-item-active,
-        &.ant-select-dropdown-menu-item-selected {
-            background-color: $background-lighter!important;
-        }
-        &:hover {
-            background-color: $highlight !important;
-        }
-        .ant-select-arrow {
-            color: $background-darker;
-        }
+.inspector-drawer {
+    position: absolute;
+    bottom: 42px;
+    width: 320px;
+    height: 80vh;
+    bottom: 0px;
+    right: 16px !important;
+    top: 13vh;
+
+    &.hidden {
+        // display: none;
+        right: 0px;
     }
 }
 
@@ -168,5 +46,92 @@ button.ant-switch-small {
     }
     &.ant-switch-checked {
         background-color: $green !important;
+    }
+}
+
+.inspector-empty {
+    height: 100%;
+    width: 100%;
+    line-height: 100%;
+    text-align: center;
+    color: $grey;
+}
+
+.inspector-block {
+    height: auto;
+    width: 100%;
+    padding-bottom: $base-unit * 3;
+
+    &-title {
+        // background: $background-darker;
+        background: $background-very-dark;
+        padding: $base-unit/2 $base-unit;
+        // border: 1px solid $background-very-dark;
+        color: $white;
+        font-size: 12px;
+
+        &-label-icon {
+            height: 12px;
+            width: 12px;
+        }
+
+        &-label {
+            margin-left: $base-unit;
+        }
+    }
+
+    &-values {
+        padding: $base-unit;
+        background: $background-darker;
+        border: 1px solid $background-very-dark;
+    }
+}
+
+.inspector-property {
+    margin-bottom: $base-unit * 2;
+
+    &-label {
+        display: block;
+        font-size: 12px;
+        color: $white;
+        margin: 0px 0px $base-unit / 2 $base-unit / 4; 
+    }
+
+    &-value {
+        display: block;
+
+        input {
+            font-size: 12px;
+            background: $background-very-dark;
+            border: none;
+            color: $grey;
+        }
+    }
+
+    &-input-group {
+        & .inspector-property-input {
+            display: inline-block;
+            margin: 0px $base-unit/2;
+            color: $white;
+            
+            &-label {
+                font-size: $base-unit * 1.6;
+                margin-right: $base-unit;
+                color: $grey;
+            }
+
+            & input {
+                padding: $base-unit;
+                max-width: $base-unit * 8.75;
+            }
+        }
+    }
+
+    &-box {
+        display: block;
+        background: $background-very-dark;
+        padding: $base-unit * 1.5;
+        width: 100%;
+        height: auto;
     }
 }

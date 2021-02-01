@@ -1,18 +1,31 @@
 import React from 'react';
+import classnames from 'classnames';
 import { InputNumber } from 'antd';
 
-import { MIN, MAX } from './constants';
+import { MIN, MAX } from '../constants';
 
-export default ({x, y, z, onScaleChange}) => (
-    <div className='setting-row'>
-        <label className='setting-label'>
+import style from '../../../inspector.module.scss';
+
+const groupClassname = classnames(
+    style['inspector-property-value'],
+    style['inspector-property-input-group']
+);
+
+const inputClassname = classnames(
+    style['inspector-property-input'],
+    style['small']
+);
+
+export default ({x, y, z, onScaleChange = f => f }) => (
+    <div className={style['inspector-property']}>
+        <label className={style['inspector-property-label']}>
             Scale
         </label>
-        <div className="setting-input-group">
-            <div className={"setting-input small"}>
+        <div className={groupClassname}>
+            <div className={inputClassname}>
+                <span className={style['inspector-property-input-label']}>x:</span>
                 <InputNumber
                     onChange={onScaleChange('x')}
-                    size="small"
                     min={MIN}
                     max={MAX}
                     defaultValue={x}
@@ -20,10 +33,10 @@ export default ({x, y, z, onScaleChange}) => (
                     placeholder="0"
                     value={x} />
             </div>
-            <div className={"setting-input small"}>
+            <div className={inputClassname}>
+                <span className={style['inspector-property-input-label']}>y:</span>
                 <InputNumber
                     onChange={onScaleChange('y')}
-                    size="small"
                     min={MIN}
                     max={MAX}
                     defaultValue={y}
@@ -31,10 +44,10 @@ export default ({x, y, z, onScaleChange}) => (
                     placeholder="0"
                     value={y} />
             </div>
-            <div className={"setting-input small last"}>
+            <div className={inputClassname}>
+                <span className={style['inspector-property-input-label']}>z:</span>
                 <InputNumber
                     onChange={onScaleChange('z')}
-                    size="small"
                     min={MIN}
                     max={MAX}
                     defaultValue={z}

@@ -4,7 +4,6 @@ exports[`SceneContainer should render properly 1`] = `
 <div
   className="scene-container"
 >
-  <Player />
   <Scene
     fullscreen={false}
   />
@@ -15,7 +14,6 @@ exports[`SceneContainer should render properly if fullscreen 1`] = `
 <div
   className="scene-container fullscreen"
 >
-  <Player />
   <Scene
     fullscreen={true}
   />

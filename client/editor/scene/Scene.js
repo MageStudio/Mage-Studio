@@ -12,21 +12,16 @@ export class Scene extends React.Component {
         this.app = {};
     }
 
-    async componentDidMount() {
-        const { store, onMeshChanged, onMeshAttached, onMeshDetached, onSceneExported, config, onSceneLoad } = this.props;
-        const { scene } = config;
-        this.app = await getOrCreateApp();
+    componentDidMount() {
+        const { store, onMeshChanged, onElementAttached, onElementDetached, onSceneExported, config, onSceneLoad } = this.props;
 
-        if (scene) {
-            onSceneLoad(scene);
-        }
-
-        // this.app.setStore(store);
-
-        this.app.addEventListener('meshChanged', debounce(onMeshChanged, 15));
-        this.app.addEventListener('meshAttached', onMeshAttached);
-        this.app.addEventListener('meshDetached', onMeshDetached);
-        this.app.addEventListener('sceneExported', onSceneExported(config.scene));
+        getOrCreateApp()
+            .then(app => {
+                this.app = app;
+                // this.app.addEventListener('elementChanged', debounce(onMeshChanged, 15));
+                this.app.addEventListener('elementAttached', onElementAttached);
+                this.app.addEventListener('elementDetached', onElementDetached);
+            });
     }
 
     async componentDidUpdate(prevProps) {

@@ -1,21 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RightSidebar should render fine 1`] = `
+exports[`Name should render fine 1`] = `
 <div
-  className="setting-row"
+  className="inspector-property"
 >
   <label
-    className="setting-label"
+    className="inspector-property-label"
   >
     Name
   </label>
   <div
-    className="setting-input right"
+    className="inspector-property-value"
   >
     <Input
       onChange={[Function]}
       placeholder="name"
-      size="small"
       type="text"
       value=""
     />

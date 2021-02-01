@@ -1,26 +1,27 @@
 import React from 'react';
 import {
-    Icon,
     Select,
     Switch,
     Input
 } from 'antd';
+
+import { PictureOutlined } from '@ant-design/icons';
+
+import style from '../../../inspector.module.scss';
 
 const mapTexturesToOption = (textures) => {
     return textures.map(texture => <Select.Option key={texture.name}>{texture.name}</Select.Option>)
 }
 
 const Material = ({ textures = [], onTextureChange, onMaterialChange }) => (
-    <div>
-        <div className='scene-property'>
-            <div className='label'>
-                <Icon type='picture' theme='outlined' height='8px' width='8px' className='label-icon'/>
-                <span className='label-text'>MATERIAL</span>
-            </div>
+    <div className={style['inspector-block']}>
+        <div className={style['inspector-block-title']}>
+            <PictureOutlined height='8px' width='8px' className={style['inspector-block-title-label-icon']}/>
+            <span className={style['inspector-block-title-label']}>MATERIAL</span>
         </div>
-        <div className='scene-setting'>
-            <div className='setting-row'>
-                <label className='setting-label'>
+        <div className={style['inspector-block-values']}>
+            <div className={style['inspector-property']}>
+                <label className={style['inspector-property-label']}>
                     Material
                 </label>
                 <Select
@@ -35,8 +36,8 @@ const Material = ({ textures = [], onTextureChange, onMaterialChange }) => (
                     <Select.Option key='standard'>Standard</Select.Option>
                 </Select>
             </div>
-            <div className='setting-row'>
-                <label className='setting-label'>
+            <div className={style['inspector-property']}>
+                <label className={style['inspector-property-label']}>
                     Wireframe
                 </label>
                 <div className='enabled-toggle'>
@@ -45,8 +46,8 @@ const Material = ({ textures = [], onTextureChange, onMaterialChange }) => (
                         size={"small"} />
                 </div>
             </div>
-            <div className='setting-row'>
-                <label className='setting-label'>
+            <div className={style['inspector-property']}>
+                <label className={style['inspector-property-label']}>
                     Color
                 </label>
                 <div className="setting-input right">
@@ -55,8 +56,8 @@ const Material = ({ textures = [], onTextureChange, onMaterialChange }) => (
                         placeholder="#ffffff" />
                 </div>
             </div>
-            <div className='setting-row'>
-                <label className='setting-label'>
+            <div className={style['inspector-property']}>
+                <label className={style['inspector-property-label']}>
                     Texture
                 </label>
                 <Select
@@ -66,8 +67,8 @@ const Material = ({ textures = [], onTextureChange, onMaterialChange }) => (
                     { mapTexturesToOption(textures) }
                 </Select>
             </div>
-            <div className='setting-row'>
-                <label className='setting-label'>
+            <div className={style['inspector-property']}>
+                <label className={style['inspector-property-label']}>
                     Normal
                 </label>
                 <Select

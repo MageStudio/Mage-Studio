@@ -30,29 +30,29 @@ describe('SceneContainer', () => {
 
     describe('events', () => {
 
-        it('should call onMeshChanged', () => {
+        it('should call onElementChanged', () => {
             const spy = sinon.spy();
-            const component = getSceneContainer({ onMeshChanged: spy });
+            const component = getSceneContainer({ onElementChanged: spy });
 
-            component.find('Scene').simulate('meshChanged');
+            component.find('Scene').simulate('elementChanged');
 
             expect(spy.called).toBe(true);
         });
 
-        it('should call onMeshAttached', () => {
+        it('should call onElementAttached', () => {
             const spy = sinon.spy();
-            const component = getSceneContainer({ onMeshAttached: spy });
+            const component = getSceneContainer({ onElementAttached: spy });
 
-            component.find('Scene').simulate('meshAttached');
+            component.find('Scene').simulate('elementAttached');
 
             expect(spy.called).toBe(true);
         });
 
-        it('should call onMeshDetached', () => {
+        it('should call onElementDetached', () => {
             const spy = sinon.spy();
-            const component = getSceneContainer({ onMeshDetached: spy });
+            const component = getSceneContainer({ onElementDetached: spy });
 
-            component.find('Scene').simulate('meshDetached');
+            component.find('Scene').simulate('elementDetached');
 
             expect(spy.called).toBe(true);
         });

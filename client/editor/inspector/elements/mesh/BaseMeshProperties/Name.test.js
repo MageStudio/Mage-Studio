@@ -5,7 +5,7 @@ import sinon from 'sinon';
 
 import Name from './Name';
 
-describe('RightSidebar', () => {
+describe('Name', () => {
 
     it('should render fine', () => {
         const component = shallow(<Name />);

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Icon } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
-import './inspectorelements.scss';
+import style from '../inspector.module.scss';
 
 const EmptyInspector = () => (
-    <div className='inspector-empty'>
+    <div className={style['inspector-empty']}>
         <p>
-            <Icon height='64px' width='64px' className="inspector-empty-icon" type="search" />
+            <SearchOutlined height='64px' width='64px' className={style['inspector-empty-icon']} type="search" />
             Please select an element from the Scene, Hierarchy or Assets box.
         </p>
     </div>

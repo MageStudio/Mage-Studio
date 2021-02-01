@@ -1,6 +1,13 @@
 import React from 'react';
+import { Drawer } from 'antd';
+import classnames from 'classnames';
 import EmptyInspector from './elements/EmptyInspector';
 import MeshInspector from './elements/MeshInspector';
+
+import style from './inspector.module.scss';
+import { toggleInspectorVisibility } from '../../actions/inspector';
+import { connect } from 'react-redux';
+import { ENTITY_TYPES } from '../../lib/constants';
 
 class Inspector extends React.Component {
 
@@ -10,55 +17,62 @@ class Inspector extends React.Component {
 
     getContent() {
         const {
-            type,
-            position,
-            rotation,
-            scale,
-            name,
-            onNameChange,
-            onPositionChange,
-            onRotationChange,
-            onScriptsMount,
-            onScriptChange,
-            onScaleChange,
-            onTextureChange,
-            onMaterialChange,
-            scripts,
-            assets
+            element,
         } = this.props;
 
-        if (type === 'mesh') {
-            return (
-                <MeshInspector
-                    onPositionChange={onPositionChange}
-                    onRotationChange={onRotationChange}
-                    onScaleChange={onScaleChange}
-                    onScriptsMount={onScriptsMount}
-                    onScriptChange={onScriptChange}
-                    onTextureChange={onTextureChange}
-                    onMaterialChange={onMaterialChange}
-                    onNameChange={onNameChange}
-                    name={name}
-                    scripts={scripts}
-                    position={position}
-                    rotation={rotation}
-                    scale={scale}
-                    assets={assets}
-                />
-            );
+        if (element) {
+            console.log(element);
+            switch (element.getEntityType()) {
+                case ENTITY_TYPES.MESH:
+                    return <MeshInspector
+                        onPositionChange={f => f}
+                        onRotationChange={f => f}
+                        onScaleChange={f => f}
+                        onScriptsMount={f => f}
+                        onScriptChange={f => f}
+                        onTextureChange={f => f}
+                        onMaterialChange={f => f}
+                        onNameChange={f => f}
+                        position={element.getPosition()}
+                        rotation={element.getRotation()}
+                        scale={element.getScale()}
+                        tags={element.getTags()}
+                        name={element.getName()} />
+            }
         }
 
-        return <EmptyInspector />;
+        return <EmptyInspector />
     }
 
     render() {
+        const { visible } = this.props;
+        const className = classnames(style['inspector-drawer'], {
+            [style['hidden']]: !visible
+        });
         return (
-            // use a drawer component here
-            <div>
+            <Drawer
+                className={className}
+                title={'Inpector'}
+                placement={'right'}
+                closable={false}
+                height={'80vh'}
+                width={400}
+                mask={false}
+                visible={visible}
+                getContainer={false}>
                 { this.getContent() }
-            </div>
+            </Drawer>
         );
     }
 }
 
-export default Inspector;
+const mapStateToProps = ({ inspector }) => ({
+    visible: inspector.visible,
+    element: inspector.element
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    onInspectorClose: () => dispatch(toggleInspectorVisibility(false))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inspector);

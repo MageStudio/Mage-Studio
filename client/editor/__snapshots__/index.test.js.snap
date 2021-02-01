@@ -15,6 +15,7 @@ exports[`App should render fine 1`] = `
     >
       <Connect(SceneContainer) />
     </div>
+    <Connect(Inspector) />
   </Row>
   <Footer />
 </div>

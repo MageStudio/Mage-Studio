@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { Icon } from 'antd';
+import { CodeSandboxOutlined } from '@ant-design/icons';
 
 import Position from './Position';
 import Rotation from './Rotation';
 import Scale from './Scale';
 import Name from './Name';
+import Tags from './Tags';
+
+import style from '../../../inspector.module.scss';
 
 const BaseMeshProperties = (props) => {
 
@@ -13,6 +16,7 @@ const BaseMeshProperties = (props) => {
             position = {},
             rotation = {},
             scale = {},
+            tags = [],
             name,
             onNameChange,
             onPositionChange,
@@ -21,14 +25,12 @@ const BaseMeshProperties = (props) => {
         } = props;
 
         return (
-            <div>
-                <div className="scene-property">
-                    <div className='label'>
-                        <Icon type='code-sandbox' theme='outlined' height='8px' width='8px' className='label-icon'/>
-                        <span className='label-text'>MESH</span>
-                    </div>
+            <div className={style['inspector-block']}>
+                <div className={style['inspector-block-title']}>
+                    <CodeSandboxOutlined height='8px' width='8px' className={style['inspector-block-title-label-icon']}/>
+                    <span className={style['inspector-block-title-label']}>MESH</span>
                 </div>
-                <div className="scene-setting">
+                <div className={style['inspector-block-values']}>
                     <Name
                         name={name}
                         onNameChange={onNameChange}
@@ -51,6 +53,7 @@ const BaseMeshProperties = (props) => {
                         y={scale.y}
                         z={scale.z}
                     />
+                    <Tags tags={tags} />
                 </div>
             </div>
     )

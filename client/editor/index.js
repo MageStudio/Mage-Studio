@@ -6,6 +6,7 @@ import Footer from '../shared/footer/Footer';
 import TopToolbar from './toolbars/top';
 import BottomToolbar from './toolbars/bottom';
 import SceneContainer from './scene/SceneContainer';
+import Inspector from './inspector/Inspector';
 
 export default (props) => {
     return (
@@ -17,6 +18,7 @@ export default (props) => {
                 <div className="canvas-container">
                     <SceneContainer store={props.store}/>
                 </div>
+                <Inspector />
             </Row>
             <Footer />
         </div>
